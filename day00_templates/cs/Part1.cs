@@ -11,6 +11,11 @@ namespace AdventOfCode2020
         public static void Main(string[] args)
         {
             WriteLine("# Part 1");
+            WriteLine("--------");
+            const string fname = "example.txt";
+            // const string fname = "input.txt";
+            List<int> numbers = FileUtils.ReadLinesAsInts(fname);
+            WriteLine(string.Join(", ", numbers));
         }
     }
 }
