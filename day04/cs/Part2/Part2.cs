@@ -1,7 +1,5 @@
-using System;
 using static System.Console;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace AdventOfCode2020

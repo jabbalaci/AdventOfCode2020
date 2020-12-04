@@ -1,8 +1,6 @@
 using System;
 using System.Text;
-using static System.Console;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Passport
@@ -13,9 +11,6 @@ public class Passport
     private static string[] eyeColors = { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
 
     private Dictionary<string, string> passport = new Dictionary<string, string>();
-    private int byr;
-    private int iyr;
-    private int eyr;
 
     public Passport(string data)
     {
@@ -27,23 +22,9 @@ public class Passport
             var value = pieces[1];
             passport[key] = value;
         }
-        // byr
-        if (passport.ContainsKey("byr"))
-        {
-            this.byr = int.Parse(passport["byr"]);
-        }
-        // iyr
-        if (passport.ContainsKey("iyr"))
-        {
-            this.iyr = int.Parse(passport["iyr"]);
-        }
-        // eyr
-        if (passport.ContainsKey("eyr"))
-        {
-            this.eyr = int.Parse(passport["eyr"]);
-        }
     }
 
+    // for debug purposes
     public override string ToString()
     {
         var sb = new StringBuilder("{");
@@ -63,25 +44,22 @@ public class Passport
     private bool IsByrValid()
     {
         // byr (Birth Year) - four digits; at least 1920 and at most 2002.
-        bool result = this.byr >= 1920 && this.byr <= 2002;
-        // WriteLine("# byr; value: {0}; valid: {1}", this.passport["byr"], result);
-        return result;
+        int value = int.Parse(this.passport["byr"]);
+        return value >= 1920 && value <= 2002;
     }
 
     private bool IsIyrValid()
     {
         // iyr (Issue Year) - four digits; at least 2010 and at most 2020.
-        bool result = this.iyr >= 2010 && this.iyr <= 2020;
-        // WriteLine("# iyr; value: {0}; valid: {1}", this.passport["iyr"], result);
-        return result;
+        int value = int.Parse(this.passport["iyr"]);
+        return value >= 2010 && value <= 2020;
     }
 
     private bool IsEyrValid()
     {
         // eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
-        bool result = this.eyr >= 2020 && this.eyr <= 2030;
-        // WriteLine("# eyr; value: {0}; valid: {1}", this.passport["eyr"], result);
-        return result;
+        int value = int.Parse(this.passport["eyr"]);
+        return value >= 2020 && value <= 2030;
     }
 
     private bool IsHgtValid()
@@ -94,26 +72,21 @@ public class Passport
         string value = this.passport["hgt"];
         if (!(value.EndsWith("cm") || value.EndsWith("in")))
         {
-            // WriteLine("# hgt; value: {0}; valid: {1}", value, false);
             return false;
         }
         // else, if ends with "cm" or "in"
         var number = int.Parse(value[..^2]);
         if (value.EndsWith("cm"))
         {
-            bool result = number >= 150 && number <= 193;
-            // WriteLine("# hgt; value: {0}; valid: {1}", value, result);
-            return result;
+            return number >= 150 && number <= 193;
         }
         else    // inch
         {
-            bool result = number >= 59 && number <= 76;
-            // WriteLine("# hgt; value: {0}; valid: {1}", value, result);
-            return result;
+            return number >= 59 && number <= 76;
         }
     }
 
-    private bool IsHexaDigit(char c)
+    private bool IsHexDigit(char c)
     {
         return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f');
     }
@@ -126,7 +99,7 @@ public class Passport
             return false;
         }
         // else, i.e. starts with '#' and after the '#' there are 6 characters
-        return value[1..].All(IsHexaDigit);
+        return value[1..].All(IsHexDigit);
     }
 
     private bool IsEclValid()
