@@ -12,6 +12,7 @@ namespace AdventOfCode2020
         {
             WriteLine("# Part 1");
             WriteLine("--------");
+            WriteLine();
             const string fname = "example.txt";
             // const string fname = "input.txt";
             List<int> numbers = FileUtils.ReadLinesAsInts(fname);
