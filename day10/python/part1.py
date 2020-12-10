@@ -19,8 +19,11 @@ def main():
         elif diff == 3:
             three += 1
     #
+    print(numbers)
+    print("length:", len(numbers))
     print(one)
     print(three)
+    print()
     print("result:", one * three)
 
 ##############################################################################
