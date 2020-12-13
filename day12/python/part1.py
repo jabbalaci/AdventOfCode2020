@@ -5,6 +5,7 @@ from typing import List, Tuple
 
 DIRECTIONS = "NESWNES"    # north, east, south, west, north, east, south
 
+
 class Ship:
     def __init__(self, lines: List[str]) -> None:
         self.instructions: Tuple[Tuple[str, int], ...] = self.parse(lines)
