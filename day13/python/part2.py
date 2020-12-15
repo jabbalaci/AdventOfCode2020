@@ -18,7 +18,8 @@ def main() -> None:
             # print(f"(x + {idx}) % {value} = 0")
 
     original = 2_429_011    # 379 * 13 * 17 * 29
-    i = int(100_000_000_000_000 / 2_429_011)
+    i = 100_000_000_000_000 // 2_429_011
+
     while True:
         x = i * original - 41
         if (x + 0) % 41 == 0 and \
