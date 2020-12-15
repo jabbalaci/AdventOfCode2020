@@ -112,6 +112,12 @@ venv.bak/
 bin/
 obj/
 
+########
+# Java #
+########
+
+*.class
+
 
 ##########
 # common #
