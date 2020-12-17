@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+"""
+A simplified version of Part 1a.
+
+Difference from Part 1a: get_neighbors() uses itertools.product
+
+It can serve as a starting point for Part 2.
+"""
+
+import itertools
 from pprint import pprint
 from typing import Dict, List, NamedTuple, Tuple
 
@@ -40,43 +49,17 @@ class Cube:
 
     def get_neighbors(self, center: Point) -> List[Tuple[Point, bool]]:
         x, y, z = center
-        neighbors: List[Point] = [
-            Point(x-1, y-1, z),
-            Point(x, y-1, z),
-            Point(x+1, y-1, z),
-            Point(x-1, y, z),
-            Point(x+1, y, z),
-            Point(x-1, y+1, z),
-            Point(x, y+1, z),
-            Point(x+1, y+1, z),
-            #
-            Point(x-1, y-1, z-1),
-            Point(x, y-1, z-1),
-            Point(x+1, y-1, z-1),
-            Point(x-1, y, z-1),
-            Point(x, y, z-1),
-            Point(x+1, y, z-1),
-            Point(x-1, y+1, z-1),
-            Point(x, y+1, z-1),
-            Point(x+1, y+1, z-1),
-            #
-            Point(x-1, y-1, z+1),
-            Point(x, y-1, z+1),
-            Point(x+1, y-1, z+1),
-            Point(x-1, y, z+1),
-            Point(x, y, z+1),
-            Point(x+1, y, z+1),
-            Point(x-1, y+1, z+1),
-            Point(x, y+1, z+1),
-            Point(x+1, y+1, z+1)
-        ]
-        #
+
         result: List[Tuple[Point, bool]] = []
-        for p in neighbors:
-            if self.d.get(p):
-                result.append((p, True))
-            else:
-                result.append((p, False))
+        for elem in itertools.product([x-1, x, x+1], [y-1, y, y+1], [z-1, z, z+1]):
+            if elem != (x, y, z):
+                p = Point(x=elem[0], y=elem[1], z=elem[2])
+                if self.d.get(p):
+                    result.append((p, True))
+                else:
+                    result.append((p, False))
+                #
+            #
         #
         return result
 
@@ -118,6 +101,8 @@ def main() -> None:
         print("Cycle:", i)
         print(cube.get_number_of_active_cubes())
         print("------------")
+        if i == 6:
+            break
         cube.evolve()
 
 ##############################################################################
