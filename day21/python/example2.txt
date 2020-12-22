@@ -1,0 +1,4 @@
+A B C D (contains 1, 2)
+E F G A  (contains 1)
+C F (contains 3)
+C A G (contains 2)
