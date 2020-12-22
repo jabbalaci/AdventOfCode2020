@@ -6,7 +6,7 @@ from typing import Deque, List, Tuple
 import helper
 
 
-def start(player1: Deque[int], player2: Deque[int]):
+def start(player1: Deque[int], player2: Deque[int]) -> Deque[int]:
     p1 = player1.copy()
     p2 = player2.copy()
 
