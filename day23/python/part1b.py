@@ -3,7 +3,7 @@
 """
 Refactored version of Part 1a.
 
-It will serve as a starting point for Part 2.
+It turned out to be slow for Part 2.
 """
 
 from collections import deque
